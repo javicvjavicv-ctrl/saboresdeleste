@@ -1,0 +1,18 @@
+{
+  "name": "Sabores del Este — Valencia",
+  "short_name": "Sabores del Este",
+  "description": "Tiendas y restaurantes rusos y del Este de Europa en Valencia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#120d0d",
+  "theme_color": "#120d0d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
