@@ -545,9 +545,9 @@ function renderLugares() {
       '</div>'+
       (sel?'<div class="detail" onclick="event.stopPropagation()">'+
         '<div><div class="slabel">Horarios</div><div class="hgrid">'+scheduleRows(p)+'</div></div>'+
-        '<div class="irow"><span style="font-size:14px">📍</span><a href="https://www.google.com/maps?q='+p.lat+','+p.lng+'" target="_blank" rel="noopener">Ver en Google Maps</a></div>'+
-        (p.phone?'<div class="irow"><span style="font-size:14px">📞</span><a href="tel:'+p.phone+'">'+p.phone+'</a></div>':'')+
-        (p.web?'<div class="irow"><span style="font-size:13px">🌐</span><a href="'+p.web+'" target="_blank" rel="noopener">'+p.web.replace('https://','').replace('http://','')+'</a></div>':'')+'</div>'+
+        '<div class="irow"><span style="font-size:13px">📍</span><a href="https://www.google.com/maps?q='+p.lat+','+p.lng+'" target="_blank" rel="noopener">Ver en Google Maps</a></div>'+
+        (p.phone?'<div class="irow"><span style="font-size:13px">📞</span><a href="tel:'+p.phone+'">'+p.phone+'</a></div>':'')+
+        (p.web?'<div class="irow"><span style="font-size:13px">🌐</span><a href="'+p.web+'" target="_blank" rel="noopener">'+p.web.replace('https://','').replace('http://','')+'</a></div>':'')+
         '<div class="hbox">'+p.highlight+'</div>'+
         catalogTags(p,searchQ)+
         '<div class="rbox">'+p.topReview+'</div>'+
