@@ -4,8 +4,10 @@
   "description": "Tiendas y restaurantes rusos y del Este de Europa en Valencia",
   "start_url": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "background_color": "#120d0d",
   "theme_color": "#120d0d",
+  "color_scheme": "dark",
   "orientation": "portrait",
   "icons": [
     {
