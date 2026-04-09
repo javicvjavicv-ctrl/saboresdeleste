@@ -23,8 +23,8 @@
   --bg-card: #ffffff;
   --bg-sec: #f0ede8;
   --text: #1a1614;
-  --text2: #5c524e;
-  --text3: #9c8f8a;
+  --text2: #3d3330;
+  --text3: #6b5e59;
   --border: rgba(0,0,0,0.09);
   --border2: rgba(0,0,0,0.15);
   --r: 14px;
@@ -34,7 +34,7 @@
 @media(prefers-color-scheme:dark){
   :root{
     --bg:#231a17; --bg-card:#2e2320; --bg-sec:#3a2d29;
-    --text:#f0ece8; --text2:#a89e9a; --text3:#6b605c;
+    --text:#f0ece8; --text2:#c8bfbb; --text3:#9e918c;
     --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
     --shadow:0 2px 12px rgba(0,0,0,0.4); --red-pale:rgba(107,18,18,0.2);
   }
@@ -42,7 +42,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);max-width:480px;margin:0 auto;min-height:100vh}
 
-.header{background:var(--red);padding:10px 16px 12px;position:sticky;top:0;z-index:100}
+.header{background:var(--red);padding:10px 16px 12px;position:sticky;top:0;z-index:100;transition:transform 0.25s ease}
 .header-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .flag{width:30px;height:20px;border-radius:3px;overflow:hidden;flex-shrink:0;display:flex;flex-direction:column}
 .flag-w{flex:1;background:#fff}
@@ -68,7 +68,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--tex
 .content{padding:12px 14px 100px;display:flex;flex-direction:column;gap:10px}
 .count{font-size:12px;color:var(--text3);padding:4px 16px 0}
 
-.card{background:var(--bg-card);border-radius:var(--r);border:1px solid var(--border);padding:14px;cursor:pointer;transition:border-color .15s;box-shadow:var(--shadow)}
+.card{scroll-margin-top:var(--sticky-h,100px);background:var(--bg-card);border-radius:var(--r);border:1px solid var(--border);padding:14px;cursor:pointer;transition:border-color .15s;box-shadow:var(--shadow)}
 .card:active{opacity:.9}
 .card.selected{border-color:var(--red)}
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
@@ -77,7 +77,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--tex
 .badge-t{background:#FEF3C7;color:#92400E}
 .badge-r{background:#DCFCE7;color:#166534}
 .card-address{font-size:12px;color:var(--text2);margin-bottom:3px}
-.card-origin{font-size:11px;color:var(--text3);margin-bottom:8px}
+.card-origin{font-size:12px;color:var(--text2);margin-bottom:8px}
 .card-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .stars{font-size:12px;color:#E09B20}
 .rev{font-size:11px;color:var(--text3)}
@@ -105,7 +105,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--tex
 .tag.match{background:var(--red-pale);border-color:var(--red);color:var(--red);font-weight:600}
 .tag:hover{border-color:var(--red);color:var(--red)}
 
-.pcard{background:var(--bg-card);border-radius:var(--r);border:1px solid var(--border);padding:14px;box-shadow:var(--shadow)}
+.pcard{background:var(--bg-card);border-radius:var(--r);border:1px solid var(--border);padding:14px;box-shadow:var(--shadow);scroll-margin-top:var(--sticky-h,100px)}
 @keyframes flash{0%,100%{border-color:var(--border)}30%,70%{border-color:var(--red);box-shadow:0 0 0 3px var(--red-pale)}}
 .pcard.flash{animation:flash .8s ease}
 .pname{font-family:'Playfair Display',serif;font-size:16px;font-weight:500;color:var(--text);margin-bottom:3px}
@@ -209,17 +209,17 @@ var CATALOG = [
 ];
 
 var PLACES = [
-  {id:1, type:'tienda',      name:'Emigrant Market',               address:'C/ de Julio Antonio, 19, Extramurs',              rating:4.5, reviews:73,   phone:'+34 632 78 52 73', schedule:{0:null,1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,21]},                                   origin:'Ruso · Ucraniano · Europa del Este',    highlight:'Gran selección de productos ucranianos, encurtidos frescos, crema agria.',              topReview:'Uno de los únicos sitios con crema agria en Valencia. Excelentes encurtidos frescos.',    items:['smetana','encurtidos','pelmeni','varenyky','kvas','arenque','ikra','kondensada','tvorog','syrniki']},
+  {id:1,web:"https://emigrantmarket.es", type:'tienda',      name:'Emigrant Market',               address:'C/ de Julio Antonio, 19, Extramurs',              rating:4.5, reviews:73,   phone:'+34 632 78 52 73', schedule:{0:null,1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,21]},                                   origin:'Ruso · Ucraniano · Europa del Este',    highlight:'Gran selección de productos ucranianos, encurtidos frescos, crema agria.',              topReview:'Uno de los únicos sitios con crema agria en Valencia. Excelentes encurtidos frescos.',    items:['smetana','encurtidos','pelmeni','varenyky','kvas','arenque','ikra','kondensada','tvorog','syrniki']},
   {id:2, type:'tienda',      name:'Mini Mix',                      address:'Av. de Menéndez Pidal, 4, Campanar',              rating:4.5, reviews:520,  phone:'+34 667 60 51 23', schedule:{0:[10,21],1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,21]},                                  origin:'Ruso · Ucraniano · Polaco · Georgiano', highlight:'Gran surtido: embutidos, cerveza, pelmeni, kéfir, nata agria, vino georgiano.',         topReview:'Buena tienda con descuentos razonables. Mucho producto de Rusia, Ucrania y Polonia.',     items:['pelmeni','varenyky','pierogi','smetana','kefir','encurtidos','baltika_beer','georgian_wine','smoked_sausage','kondensada','laima','kvas','arenque']},
   {id:3, type:'tienda',      name:'Baltika',                       address:'C/ dels Sants Just i Pastor, 140, Camins al Grau', rating:4.3, reviews:582,  phone:'+34 963 71 18 20', schedule:{0:[10,21],1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,21]},                                  origin:'Europa del Este · Países Bálticos',     highlight:'Amplia selección de productos bálticos, cerveza Baltika, kvas.',                       topReview:'Muy buena selección de muchos países del Este. Personal amable y acogedor.',             items:['baltika_beer','kvas','pelmeni','smoked_sausage','laima','encurtidos','smetana','arenque','kondensada']},
-  {id:4, type:'tienda',      name:'Skazka',                        address:'C/ de Julio Antonio, 19, Extramurs',              rating:4.4, reviews:353,  phone:'+34 601 39 95 63', schedule:{0:null,1:[11,20.5],2:[11,20.5],3:[11,20.5],4:[11,20.5],5:[11,20.5],6:[11,20.5]},                          origin:'Ucraniano · Ruso',                      highlight:'Tienda con sabores ucranianos y rusos. Cerrado domingos.',                             topReview:'Mi tienda favorita con deliciosos productos ucranianos y rusos.',                        items:['varenyky','pelmeni','smetana','encurtidos','kondensada','halva','kvas','smoked_sausage','salo']},
-  {id:5, type:'tienda',      name:'SamSmak Market',                address:'C/ de Vives Liern, 3, Extramurs',                 rating:3.9, reviews:125,  phone:'+34 683 42 33 47', schedule:{0:null,1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,19]},                                      origin:'Eslavo · Europa del Este',              highlight:'Crepes rellenos, pescado ahumado, embutidos.',                                         topReview:'Tienda limpia. Unos crepes rellenos increíbles que no encuentras en otro sitio.',        items:['blini','arenque','smoked_sausage','pelmeni','encurtidos','kefir','smetana']},
+  {id:4,web:"https://skazka.es", type:'tienda',      name:'Skazka',                        address:'C/ de Julio Antonio, 19, Extramurs',              rating:4.4, reviews:353,  phone:'+34 601 39 95 63', schedule:{0:null,1:[11,20.5],2:[11,20.5],3:[11,20.5],4:[11,20.5],5:[11,20.5],6:[11,20.5]},                          origin:'Ucraniano · Ruso',                      highlight:'Tienda con sabores ucranianos y rusos. Cerrado domingos.',                             topReview:'Mi tienda favorita con deliciosos productos ucranianos y rusos.',                        items:['varenyky','pelmeni','smetana','encurtidos','kondensada','halva','kvas','smoked_sausage','salo']},
+  {id:5,web:"https://samsmak.es", type:'tienda',      name:'SamSmak Market',                address:'C/ de Vives Liern, 3, Extramurs',                 rating:3.9, reviews:125,  phone:'+34 683 42 33 47', schedule:{0:null,1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,19]},                                      origin:'Eslavo · Europa del Este',              highlight:'Crepes rellenos, pescado ahumado, embutidos.',                                         topReview:'Tienda limpia. Unos crepes rellenos increíbles que no encuentras en otro sitio.',        items:['blini','arenque','smoked_sausage','pelmeni','encurtidos','kefir','smetana']},
   {id:6, type:'tienda',      name:'Botiga Polonesa Zubr',          address:'C/ de Dolores Marqués, 9, Benimaclet',            rating:4.7, reviews:236,  phone:'+34 963 69 05 83', schedule:{0:null,1:null,2:[[10.5,14.5],[17,19]],3:[[10.5,14.5],[17,19]],4:[[10.5,14.5],[17,19]],5:[10.5,14.5],6:null}, origin:'Polaco',                             highlight:'Especialidad en productos polacos. Horario partido mié-sáb.',                           topReview:'La cerveza y productos típicos polacos no se encuentran en otro sitio.',                 items:['pierogi','smetana','tvorog','encurtidos','kefir','baltika_beer','kondensada']},
   {id:7, type:'tienda',      name:'Leo Market - Magazin Romanesc', address:'Av. de Gaspar Aguilar, 31, Jesús',                rating:4.9, reviews:28,   phone:'+34 642 56 83 42', schedule:{0:null,1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,21]},                                      origin:'Rumano',                                highlight:'Carnes ahumadas según recetas de Transilvania. Queso artesanal.',                       topReview:'Las mejores carnes ahumadas según recetas de Transilvania. 100% recomendado.',           items:['smoked_sausage','mici','queso_rumano','smetana','encurtidos','salo']},
   {id:8, type:'tienda',      name:'NASH - Tienda Rum./Ucr./Rusa',  address:'C. Pérez Llàcer, 8, Alfafar',                     rating:4.2, reviews:88,   phone:'+34 608 93 75 03', schedule:{0:[10,17],1:[10,21],2:[10,21],3:[10,21],4:[10,21],5:[10,21],6:[10,21]},                                   origin:'Rumano · Ucraniano · Ruso',             highlight:'Comida congelada, enlatada, embutidos, kvas. Domingo cierra antes.',                    topReview:'Gran variedad. La dependienta habla español perfecto. Muy recomendable el Kvas.',        items:['kvas','pelmeni','smoked_sausage','smetana','encurtidos','syrniki','mici','ikra']},
-  {id:9, type:'restaurante', name:'Casa Ucraniana',                address:'Carrer de Padilla, 5, Ciutat Vella',              rating:4.7, reviews:1944, phone:'+34 651 50 95 72', schedule:{0:[12,24],1:[12,24],2:[12,24],3:[12,24],4:[12,24],5:[12,24],6:[12,24]},                                  origin:'Ucraniano',                             highlight:'El mejor restaurante ucraniano de Valencia. Varenyky artesanales, borsch, Chicken Kiev.', topReview:'Varenyky hechos a mano. Deliciosos y de verdad caseros. Imprescindible.',             items:['varenyky','borsch','deruny','chicken_kiev','smetana','blini','shchi','olivier','kvas']},
-  {id:10,type:'restaurante', name:'Volga Restaurant',              address:'Carrer de Xile, 5, El Pla del Real',              rating:4.7, reviews:378,  phone:'+34 634 36 53 65', schedule:{0:[13,23],1:null,2:[13,23],3:[13,23],4:[13,23],5:[13,23],6:[13,23]},                                     origin:'Ruso · Ucraniano',                      highlight:'Cocina rusa-ucraniana auténtica. Olivier, khinkali, nastoikas. Cerrado lunes.',          topReview:'De los mejores de Valencia. La Olivier, el borsch y los hinkalis son increíbles.',      items:['borsch','khinkali','olivier','pelmeni','nastoika','shchi','solyanka','blini','smetana']},
-  {id:11,type:'restaurante', name:'Restaurante del Este',          address:'C/ de Sagunt, 86, La Saïdia',                     rating:4.5, reviews:1099, phone:'+34 685 23 56 44', schedule:{0:[12,24.5],1:[12,24.5],2:[12,24.5],3:[12,24.5],4:[12,24.5],5:[12,24.5],6:[12,24.5]},                    origin:'Ucraniano · Búlgaro · Rumano',          highlight:'Mezcla de cocina del Este: pelmeni, mici rumanos, baklava. Solo efectivo.',             topReview:'Los mici a la parrilla con mostaza son espectaculares.',                                 items:['pelmeni','mici','borsch','baklava','deruny','varenyky','olivier','encurtidos']}
+  {id:9,web:"https://casa-ucraniana.es", type:'restaurante', name:'Casa Ucraniana',                address:'Carrer de Padilla, 5, Ciutat Vella',              rating:4.7, reviews:1944, phone:'+34 651 50 95 72', schedule:{0:[12,24],1:[12,24],2:[12,24],3:[12,24],4:[12,24],5:[12,24],6:[12,24]},                                  origin:'Ucraniano',                             highlight:'El mejor restaurante ucraniano de Valencia. Varenyky artesanales, borsch, Chicken Kiev.', topReview:'Varenyky hechos a mano. Deliciosos y de verdad caseros. Imprescindible.',             items:['varenyky','borsch','deruny','chicken_kiev','smetana','blini','shchi','olivier','kvas']},
+  {id:10,web:"https://www.instagram.com/volgavlc",type:'restaurante', name:'Volga Restaurant',              address:'Carrer de Xile, 5, El Pla del Real',              rating:4.7, reviews:378,  phone:'+34 634 36 53 65', schedule:{0:[13,23],1:null,2:[13,23],3:[13,23],4:[13,23],5:[13,23],6:[13,23]},                                     origin:'Ruso · Ucraniano',                      highlight:'Cocina rusa-ucraniana auténtica. Olivier, khinkali, nastoikas. Cerrado lunes.',          topReview:'De los mejores de Valencia. La Olivier, el borsch y los hinkalis son increíbles.',      items:['borsch','khinkali','olivier','pelmeni','nastoika','shchi','solyanka','blini','smetana']},
+  {id:11,web:"https://www.facebook.com/p/Bar-Restaurante-Del-Este-100066782205772",type:'restaurante', name:'Restaurante del Este',          address:'C/ de Sagunt, 86, La Saïdia',                     rating:4.5, reviews:1099, phone:'+34 685 23 56 44', schedule:{0:[12,24.5],1:[12,24.5],2:[12,24.5],3:[12,24.5],4:[12,24.5],5:[12,24.5],6:[12,24.5]},                    origin:'Ucraniano · Búlgaro · Rumano',          highlight:'Mezcla de cocina del Este: pelmeni, mici rumanos, baklava. Solo efectivo.',             topReview:'Los mici a la parrilla con mostaza son espectaculares.',                                 items:['pelmeni','mici','borsch','baklava','deruny','varenyky','olivier','encurtidos']}
 ];
 
 var activeTab='lugares', activeFilter='todos', activeCat='todas', selectedId=null, searchQ='';
@@ -228,13 +228,13 @@ var deferredPrompt=null;
 // --- Historial de navegación ---
 var navHistory = null;
 
-function pushHistory(label) {
+function pushHistory(label, originElemId) {
   navHistory = {
     tab: activeTab,
     filter: activeFilter,
     cat: activeCat,
     selectedId: selectedId,
-    scrollY: window.pageYOffset,
+    originElemId: originElemId || null,
     label: label
   };
 }
@@ -275,22 +275,66 @@ function goBack() {
   }
   updateStickyTops();
   render();
-  var sy = h.scrollY;
-  setTimeout(function(){ window.scrollTo({top: sy, behavior: 'smooth'}); }, 50);
+  // Esperar a que el DOM esté pintado antes de hacer scroll
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      var targetId = h.originElemId;
+      // Si no hay originElemId pero volvemos a lugares con una card abierta
+      if (!targetId && h.tab === 'lugares' && h.selectedId) {
+        targetId = 'card-' + h.selectedId;
+      }
+      if (targetId) {
+        var el = document.getElementById(targetId);
+        if (el) scrollToEl(el);
+      }
+    });
+  });
 }
 
+var lastScrollY = 0;
+var headerHidden = false;
+
 function updateStickyTops() {
-  var hh = document.getElementById('main-header').offsetHeight;
+  var header = document.getElementById('main-header');
   var tabs = document.getElementById('main-tabs');
+  var hh = headerHidden ? 0 : header.offsetHeight;
   tabs.style.top = hh + 'px';
   var th = tabs.offsetHeight;
+  var bars = document.querySelectorAll('.filter-bar');
+  var fh = 0;
+  bars.forEach(function(b) { if (b.style.display !== 'none') fh = b.offsetHeight; });
   ['lugares-filters','productos-filters'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.top = (hh + th) + 'px';
   });
+  // Actualizar scroll-margin-top dinámicamente
+  document.documentElement.style.setProperty('--sticky-h', (hh + th + fh + 8) + 'px');
 }
+
+function onScroll() {
+  var header = document.getElementById('main-header');
+  var y = window.pageYOffset;
+  var dy = y - lastScrollY;
+  lastScrollY = y;
+
+  // Ocultar header al bajar, mostrar al subir
+  if (dy > 6 && y > 80 && !headerHidden) {
+    headerHidden = true;
+    header.style.transform = 'translateY(-100%)';
+    updateStickyTops();
+  } else if (dy < -4 && headerHidden) {
+    headerHidden = false;
+    header.style.transform = 'translateY(0)';
+    updateStickyTops();
+  }
+
+  // Botón volver arriba
+  document.getElementById('back-top').classList.toggle('visible', y > 300);
+}
+
 window.addEventListener('load', updateStickyTops);
 window.addEventListener('resize', updateStickyTops);
+window.addEventListener('scroll', onScroll, {passive: true});
 
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault(); deferredPrompt = e;
@@ -308,30 +352,33 @@ window.addEventListener('scroll', function() {
 function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
 
 function stickyOffset() {
-  var h = document.getElementById('main-header');
+  // Si el header está oculto (translateY -100%) no ocupa espacio visual
+  var hh = headerHidden ? 0 : (document.getElementById('main-header') || {offsetHeight:0}).offsetHeight;
   var t = document.getElementById('main-tabs');
+  var th = t ? t.offsetHeight : 0;
   var bars = document.querySelectorAll('.filter-bar');
   var fh = 0;
   bars.forEach(function(b) { if (b.style.display !== 'none') fh = b.offsetHeight; });
-  return (h ? h.offsetHeight : 0) + (t ? t.offsetHeight : 0) + fh + 8;
+  return hh + th + fh + 8;
 }
-function scrollToEl(el, delay) {
-  setTimeout(function() {
-    var top = el.getBoundingClientRect().top + window.pageYOffset - stickyOffset();
-    window.scrollTo({top: top, behavior: 'smooth'});
-  }, delay || 0);
+function scrollToEl(el) {
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
 }
 function toggleCard(id) {
   selectedId = selectedId === id ? null : id;
   render();
   if (selectedId) {
     var el = document.getElementById('card-' + id);
-    if (el) scrollToEl(el, 60);
+    if (el) scrollToEl(el);
   }
 }
-function goToPlace(placeId) {
+function goToPlace(placeId, fromElemId) {
   var place = PLACES.filter(function(p){return p.id===placeId;})[0];
-  pushHistory(place ? place.name : 'búsqueda');
+  pushHistory(place ? place.name : 'búsqueda', fromElemId || null);
   setTab('lugares', true);
   searchQ = ''; document.getElementById('search').value = '';
   activeFilter = 'todos';
@@ -341,12 +388,12 @@ function goToPlace(placeId) {
   render();
   setTimeout(function() {
     var el = document.getElementById('card-' + placeId);
-    if (el) scrollToEl(el, 0);
+    if (el) scrollToEl(el);
   }, 80);
 }
-function goToProduct(itemId) {
+function goToProduct(itemId, fromElemId) {
   var item = CATALOG.filter(function(c){return c.id===itemId;})[0];
-  pushHistory(item ? item.name : 'búsqueda');
+  pushHistory(item ? item.name : 'búsqueda', fromElemId || null);
   setTab('productos', true);
   searchQ = ''; document.getElementById('search').value = '';
   activeCat = 'todas';
@@ -356,7 +403,7 @@ function goToProduct(itemId) {
   setTimeout(function() {
     var el = document.getElementById('prod-' + itemId);
     if (el) {
-      scrollToEl(el, 0);
+      scrollToEl(el);
       el.classList.add('flash');
       setTimeout(function() { el.classList.remove('flash'); }, 900);
     }
@@ -413,7 +460,7 @@ function catalogTags(p, q) {
     if (!items.length) return '';
     var tags=items.map(function(c){
       var m=q&&c.name.toLowerCase().indexOf(q.toLowerCase())>=0;
-      return '<span class="tag'+(m?' match':'')+'" onclick="goToProduct(\''+c.id+'\')">'+c.emoji+' '+c.name+'</span>';
+      return '<span class="tag'+(m?' match':'')+'" onclick="goToProduct(\''+c.id+'\',\'card-'+p.id+'\')">'+c.emoji+' '+c.name+'</span>';
     }).join('');
     return '<div><div class="slabel">'+label+'</div><div class="tags">'+tags+'</div></div>';
   }
@@ -463,18 +510,18 @@ function renderLugares() {
     return '<div class="card'+(sel?' selected':'')+'" id="card-'+p.id+'" onclick="toggleCard('+p.id+')">'+
       '<div class="card-header">'+
         '<div class="card-name">'+p.name+'</div>'+
-        '<span class="badge '+(p.type==='tienda'?'badge-t':'badge-r')+'">'+(p.type==='tienda'?'Tienda':'Restaurante')+'</span>'+
+        '<span class="spill '+st.cls+'">'+st.label+'</span>'+
       '</div>'+
       '<div class="card-address">📍 '+p.address+'</div>'+
-      '<div class="card-origin">'+p.origin+'</div>'+
+      '<div class="card-origin">'+(p.type==='tienda'?'🏪 Tienda':'🍽 Restaurante')+' · '+p.origin+'</div>'+
       '<div class="card-meta">'+
         '<span class="stars">'+stars(p.rating)+'</span>'+
         '<span class="rev">('+p.reviews+' reseñas)</span>'+
-        '<span class="spill '+st.cls+'">'+st.label+'</span>'+
       '</div>'+
       (sel?'<div class="detail" onclick="event.stopPropagation()">'+
         '<div><div class="slabel">Horarios</div><div class="hgrid">'+scheduleRows(p)+'</div></div>'+
         (p.phone?'<div class="irow"><span style="font-size:14px">📞</span><a href="tel:'+p.phone+'">'+p.phone+'</a></div>':'')+
+        (p.web?'<div class="irow"><span style="font-size:14px">🌐</span><a href="'+p.web+'" target="_blank" rel="noopener">'+p.web.replace('https://','').replace('http://','')+'</a></div>':'')+
         '<div class="hbox">'+p.highlight+'</div>'+
         catalogTags(p,searchQ)+
         '<div class="rbox">'+p.topReview+'</div>'+
@@ -502,7 +549,7 @@ function renderProductos() {
       (places.length?places.map(function(p) {
         var st=statusInfo(p);
         var stars='★'.repeat(Math.floor(p.rating))+(p.rating-Math.floor(p.rating)>=0.5?'½':'')+' '+p.rating.toFixed(1);
-        return '<div class="witem" onclick="goToPlace('+p.id+')" style="cursor:pointer">'+
+        return '<div class="witem" onclick="goToPlace('+p.id+',\'prod-'+item.id+'\')" style="cursor:pointer">'+
           '<div style="flex:1;min-width:0">'+
             '<div class="wname">'+p.name+'</div>'+
             '<div class="wsub">'+(p.type==='tienda'?'🏪 Tienda':'🍽 Restaurante')+' &middot; <span style="color:#E09B20">'+stars+'</span></div>'+
